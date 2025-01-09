@@ -7,9 +7,15 @@ require('dotenv').config();
 const app = express();
 const server = http.createServer(app);
 
+// app.use(cors({
+//   origin: process.env.CLIENT_URL || 'http://localhost:3000',
+//   methods: ['GET', 'POST'],
+// }));
+
 app.use(cors({
-  origin: process.env.CLIENT_URL || 'http://localhost:3000',
+  origin: [process.env.CLIENT_URL || 'http://localhost:3000'],
   methods: ['GET', 'POST'],
+  credentials: true,
 }));
 
 const io = new Server(server, {
